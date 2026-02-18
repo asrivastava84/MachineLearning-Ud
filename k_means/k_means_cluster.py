@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
+from sklearn.cluster import KMeans
 
 
 
@@ -65,6 +66,14 @@ plt.show()
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
 
+# perform k-means clustering with 2 clusters (change n_clusters as needed)
+# fit_predict returns the cluster label for each sample
+try:
+    kmeans = KMeans(n_clusters=2, random_state=42)
+    pred = kmeans.fit_predict(finance_features)
+except Exception as e:
+    pred = []
+    print "KMeans clustering failed:", e
 
 
 
